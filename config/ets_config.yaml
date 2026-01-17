@@ -1,0 +1,47 @@
+# config/ets_config.yaml
+# =============================================================================
+# ETS (Exponential Smoothing) Model Configuration
+# =============================================================================
+# This configuration file defines the parameters for the Exponential Smoothing
+# Time Series model and its evaluation metrics.
+#
+# Documentation: https://unit8co.github.io/darts/generated_api/darts.models.forecasting.exponential_smoothing.html
+# =============================================================================
+
+ets:
+  # Trend component: None, 'additive', or 'multiplicative'
+  # - None: No trend
+  # - additive: Linear trend (T_t = T_{t-1} + b_{t-1})
+  # - multiplicative: Exponential trend (T_t = T_{t-1} * b_{t-1})
+  trend: "additive"
+  
+  # Seasonal component: None, 'additive', or 'multiplicative'
+  # - None: No seasonality
+  # - additive: Constant seasonal effect (S_t = S_{t-m})
+  # - multiplicative: Proportional seasonal effect (S_t = S_{t-m} * L_t)
+  seasonal: "additive"
+  
+  # Number of time steps in a seasonal cycle
+  # For daily data with weekly patterns, use 7
+  seasonal_periods: 7
+  
+  # Damped trend: Apply damping to the trend component
+  # True: Trend flattens over time (more conservative forecasts)
+  # False: Trend continues linearly
+  damped: false
+
+  positivity_strategy: "fallback" # options: fallback, skip, shift
+
+# =============================================================================
+# Evaluation Configuration
+# =============================================================================
+evaluation:
+  # Primary metric for model selection and hyperparameter tuning
+  # Options: rmse, mae, mape, smape, mase
+  metric: "rmse"
+  
+  # Compute residual diagnostics (Ljung-Box test, ACF)
+  compute_diagnostics: true
+  
+  # Confidence level for prediction intervals (if supported)
+  confidence_level: 0.95

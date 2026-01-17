@@ -1,0 +1,113 @@
+prophet:
+  growth: linear
+  cap: null
+  floor: null
+  seasonality_mode: additive
+  yearly_seasonality: false
+  weekly_seasonality: true
+  daily_seasonality: false
+  custom_seasonalities: []
+  changepoint_prior_scale: 0.05
+  seasonality_prior_scale: 10.0
+  holidays_prior_scale: 10.0
+  changepoint_range: 0.8
+  n_changepoints: 25
+  changepoints: null
+  interval_width: 0.95
+  mcmc_samples: 0
+  uncertainty_samples: 1000
+  country_holidays: null
+  holidays: null
+  holidays_lower_window: 0
+  holidays_upper_window: 0
+  stan_backend: null
+  scaling: absmax
+  fit_algorithm: LBFGS
+  cross_validation:
+    initial: 730 days
+    period: 180 days
+    horizon: 90 days
+    parallel: processes
+  outlier_detection:
+    enabled: false
+    threshold: 3.0
+    method: zscore
+evaluation:
+  metric: rmse
+  metrics:
+  - mae
+  - mse
+  - rmse
+  - rmsle
+  - mape
+  - smape
+  - mdape
+  - mase
+  - rmsse
+  - rae
+  - rse
+  - mfe
+  - r2
+  - adj_r2
+  compute_diagnostics: true
+  diagnostics:
+    acf_lags: 40
+    pacf_lags: 40
+    ljung_box_lags:
+    - 10
+    - 20
+    - 30
+    adf_test: true
+    kpss_test: true
+    shapiro_test: true
+    jarque_bera_test: true
+    durbin_watson: true
+  confidence_level: 0.95
+  analyze_components: true
+  perform_cv: false
+  visualizations:
+    forecast_plot: true
+    components_plot: true
+    residuals_plot: true
+    diagnostics_plot: true
+    comparison_plot: true
+hyperparameter_tuning:
+  enabled: false
+  param_grid:
+    changepoint_prior_scale:
+    - 0.001
+    - 0.01
+    - 0.05
+    - 0.1
+    - 0.5
+    seasonality_prior_scale:
+    - 0.01
+    - 0.1
+    - 1.0
+    - 10.0
+    holidays_prior_scale:
+    - 0.01
+    - 0.1
+    - 1.0
+    - 10.0
+    seasonality_mode:
+    - additive
+    - multiplicative
+  method: grid_search
+  cv_horizon: 30 days
+  cv_initial: 365 days
+  cv_period: 90 days
+  n_iter: 10
+  scoring: rmse
+logging:
+  use_mlflow: true
+  experiment_name: Prophet_Forecasting
+  verbosity: INFO
+  save_model: true
+  save_predictions: true
+  save_components: true
+  save_diagnostics: true
+  default_tags:
+    model_type: prophet
+    framework: facebook_prophet
+    task: time_series_forecasting

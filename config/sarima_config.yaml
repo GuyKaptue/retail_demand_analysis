@@ -1,0 +1,127 @@
+# ============================================================
+# SARIMA CONFIGURATION
+# Retail Demand Forecasting – Daily Frequency
+# ============================================================
+
+# ------------------------------------------------------------
+# Base (default) SARIMA model
+# Used when grid search is disabled or as initial benchmark
+# ------------------------------------------------------------
+sarima:
+  p: 5        # Non-seasonal AR order (captures short-term momentum)
+  d: 0        # No regular differencing (series assumed trend-stationary)
+  q: 1        # Non-seasonal MA order (captures short-term shocks)
+
+  P: 1        # Seasonal AR component
+  D: 1        # Seasonal differencing (handles weekly seasonality)
+  Q: 1        # Seasonal MA component
+  s: 7        # Seasonal period = 7 days (weekly retail pattern)
+
+# ------------------------------------------------------------
+# Grid Search Configuration
+# Explores alternative SARIMA structures automatically
+# ------------------------------------------------------------
+grid_search:
+  enabled: true   # Enable/disable exhaustive SARIMA search
+
+  # ----------------------------------------------------------
+  # Non-seasonal parameter grid: (p, d, q)
+  # Focus: short-term dynamics & stationarity
+  # ----------------------------------------------------------
+  pdq_configs:
+    - [3, 0, 0]
+    - [3, 0, 1]
+    - [4, 0, 0]
+    - [4, 0, 1]
+    - [5, 0, 0]
+    - [5, 0, 1]
+    - [5, 1, 0]
+    - [5, 1, 1]
+    - [6, 0, 0]
+    - [6, 0, 1]
+    - [7, 0, 0]
+    - [7, 0, 1]
+    - [8, 0, 0]
+    - [8, 0, 1]
+    - [9, 0, 0]
+    - [9, 0, 1]
+
+  # ----------------------------------------------------------
+  # Seasonal parameter grid: (P, D, Q, s)
+  # Focus: weekly, bi-weekly, and monthly seasonality
+  # ----------------------------------------------------------
+  PDQ_configs:
+
+    # Weekly seasonality (primary assumption)
+    - [0, 1, 0, 7]
+    - [0, 1, 1, 7]
+    - [1, 1, 0, 7]
+    - [1, 1, 1, 7]
+    - [2, 1, 0, 7]
+    - [2, 1, 1, 7]
+    - [3, 1, 0, 7]
+    - [3, 1, 1, 7]
+
+    # Bi-weekly seasonality (14 days)
+    - [0, 1, 0, 14]
+    - [1, 1, 0, 14]
+
+    # Monthly-like seasonality (~30 days)
+    - [0, 1, 0, 30]
+    - [1, 1, 0, 30]
+    - [2, 1, 0, 30]
+
+  # ----------------------------------------------------------
+  # Primary selection metric for grid search
+  # Lower is better
+  # ----------------------------------------------------------
+  metric: "AIC"   # Akaike Information Criterion
+
+# ------------------------------------------------------------
+# Model Evaluation Configuration
+# ------------------------------------------------------------
+evaluation:
+
+  # Chronological train/test split
+  split_ratio: 0.8   # 80% train, 20% test
+
+  # ----------------------------------------------------------
+  # Evaluation Metrics
+  # Computed AFTER model fitting
+  # ----------------------------------------------------------
+  metrics:
+
+    # ---------- Information Criteria ----------
+    - "AIC"       # Akaike Information Criterion
+    - "AICc"      # Small-sample corrected AIC
+    - "BIC"       # Bayesian Information Criterion
+    - "HQIC"      # Hannan–Quinn Information Criterion
+
+    # ---------- Absolute Error Metrics ----------
+    - "MAE"       # Mean Absolute Error
+    - "MSE"       # Mean Squared Error
+    - "RMSE"      # Root Mean Squared Error
+    - "RMSLE"     # Root Mean Squared Log Error
+
+    # ---------- Percentage-Based Errors ----------
+    - "MAPE"      # Mean Absolute Percentage Error
+    - "SMAPE"     # Symmetric MAPE
+    - "MdAPE"     # Median Absolute Percentage Error
+
+    # ---------- Scaled / Relative Errors ----------
+    - "MASE"      # Mean Absolute Scaled Error
+    - "RMSSE"     # Root Mean Squared Scaled Error
+
+    # ---------- Accuracy & Bias ----------
+    - "R2"        # Coefficient of determination
+    - "RAE"       # Relative Absolute Error
+    - "RSE"       # Relative Squared Error
+    - "MFE"       # Mean Forecast Error (bias detection)
+
+    # ---------- Probabilistic / Likelihood ----------
+    - "LogLikelihood"
+    - "Deviance"
+
+    # ---------- Residual Diagnostics ----------
+    - "ACF1"      # Residual autocorrelation at lag 1
+    - "LjungBox"  # White-noise test for residuals

@@ -1,0 +1,410 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+tf_env_310/
+.conda/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Data files (large datasets)
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.feather
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.npy
+*.npz
+data/raw/
+data/processed/
+data/external/
+*.zip
+*.tar.gz
+*.7z
+
+# Model artifacts and checkpoints
+*.pth
+*.pt
+*.h5
+*.pb
+*.onnx
+*.joblib
+*.pkl
+models/
+checkpoints/
+artifacts/
+*.model
+*.weights
+
+# Logs
+*.log
+logs/
+log/
+*.log.*
+tensorboard/
+mlruns/
+wandb/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+.cache/
+*.bak
+*.backup
+
+# MLflow
+mlflow/
+.mlflow/
+
+# Streamlit
+.streamlit/
+
+# Jupyter notebook outputs
+notebooks/**/*.ipynb
+!notebooks/**/template.ipynb
+
+# Results and outputs
+results/
+outputs/
+predictions/
+forecasts/
+reports/results/
+reports/visualizations/
+data/batch_forecasts/
+data/model_performance/
+
+# Configuration files with sensitive data
+config/secrets.yaml
+config/api_keys.yaml
+*.key
+*.pem
+*.crt
+
+# Documentation build
+docs/_build/
+docs/build/
+*.pdf
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+.cache/
+htmlcov/
+
+# Development
+debug.log
+*.sqlite
+*.db
+
+# Kubernetes
+*.yaml.bak
+k8s/
+
+# Docker
+.dockerignore
+Dockerfile.*
+docker-compose.override.yml
+
+# Cloud
+.gcp/
+.aws/
+.azure/
+
+# Git
+.git/
+.gitignore.local
+
+# Node.js (if any frontend components)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.pdf
+*.dvi
+*.ps
+
+# R (if any R scripts)
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj.user/
+
+# MATLAB/Octave
+*.m~
+
+# Stata
+*.dta
+*.do
+*.log
+
+# SAS
+*.sas7bdat
+*.sas7bcat
+*.sas7bvew
+*.sas7bndx
+
+# SPSS
+*.sav
+*.por
+*.sps
+
+# Big data
+*.avro
+*.orc
+*.snappy
+*.bz2
+*.gz
+
+# Database
+*.sqlite3
+*.db
+*.sql
+
+# API keys and secrets
+.env.local
+.env.*.local
+secrets.json
+credentials.json
+
+# Backup files
+*~
+*.orig
+*.rej
+
+# Lock files
+*.lock
+Pipfile.lock
+poetry.lock
+
+# Package managers
+.yarn/
+.pnpm-debug.log*
+
+# Editor directories and files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Project specific ignores
+# Keep template notebooks but ignore executed ones
+notebooks/**/*.ipynb
+!notebooks/**/template.ipynb
+!notebooks/**/README.ipynb
+
+# Keep configuration templates
+config/*.template.yaml
+config/*.example.yaml
+
+# Keep documentation templates
+docs/templates/
+*.template.md
+
+# Keep test fixtures
+tests/fixtures/
+tests/data/
+
+# Ignore large data files but keep small examples
+data/**/*.csv
+!data/samples/
+!data/examples/
+
+# ML specific
+*.h5
+*.hdf5
+*.ckpt
+*.pb
+saved_models/
+model_weights/
+tensorboard_logs/
+
+# Web app specific
+app/__pycache__/
+app/**/*.pyc
+app/.streamlit/
+.streamlit/
+
+# Reports
+reports/**/*.pdf
+reports/**/*.log
+reports/**/*.aux
+!reports/docs/*.tex
+!reports/docs/*.md

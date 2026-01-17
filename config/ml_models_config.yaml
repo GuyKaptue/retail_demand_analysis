@@ -1,0 +1,139 @@
+# config/ml_models_config.yaml
+
+global:
+  target: "unit_sales"
+  drop_columns: ["date", "id"]
+  cv_strategy: "GroupKFold"
+  cv_groups: "cv_group"
+  metrics: ["rmse", "mae", "r2"]
+  test_split_date: "2017-01-01"
+
+models:
+
+  linear_regression:
+    baseline:
+      type: "Ridge"
+      params: {}
+    tuning:
+      gridsearch:
+        type: "Ridge"
+        param_grid:
+          alpha: [0.1, 1.0, 10.0, 100.0]
+          solver: ["auto", "lbfgs", "sag"]
+      randomsearch:
+        type: "Ridge"
+        param_dist:
+          alpha: "loguniform(0.001, 1000)"
+          solver: ["auto", "lbfgs", "sag"]
+        n_iter: 30
+      hyperopt:
+        type: "Ridge"
+        space:
+          alpha: "hp.loguniform('alpha', -6.9, 6.9)"
+          solver: "hp.choice('solver', ['auto', 'lbfgs', 'sag'])"
+        max_evals: 50
+
+  svr:
+    baseline:
+      type: "SVR"
+      params:
+        kernel: "rbf"
+        C: 1.0
+        epsilon: 0.1
+    tuning:
+      gridsearch:
+        param_grid:
+          kernel: ["rbf", "linear"]
+          C: [0.1, 1, 10, 100]
+          epsilon: [0.01, 0.1, 0.5]
+          gamma: ["scale", "auto"]
+      randomsearch:
+        param_dist:
+          C: "loguniform(0.01, 100)"
+          epsilon: "loguniform(0.001, 1.0)"
+          gamma: ["scale", "auto"]
+          kernel: ["rbf", "linear"]
+        n_iter: 40
+      hyperopt:
+        space:
+          C: "hp.loguniform('C', -4.6, 4.6)"
+          epsilon: "hp.loguniform('epsilon', -6.9, 0)"
+          gamma: "hp.choice('gamma', ['scale', 'auto'])"
+          kernel: "hp.choice('kernel', ['rbf', 'linear'])"
+        max_evals: 80
+
+  random_forest:
+    baseline:
+      type: "RandomForestRegressor"
+      params:
+        n_estimators: 200
+        max_depth: null
+        random_state: 42
+    tuning:
+      gridsearch:
+        param_grid:
+          n_estimators: [200, 500]
+          max_depth: [null, 10, 20]
+          min_samples_split: [2, 5]
+          min_samples_leaf: [1, 2]
+          max_features: ["sqrt", "log2", 0.5]
+      randomsearch:
+        param_dist:
+          n_estimators: "randint(200, 800)"
+          max_depth: [null, 6, 10, 20]
+          min_samples_split: "randint(2, 10)"
+          min_samples_leaf: "randint(1, 5)"
+          max_features: ["sqrt", "log2", 0.5, 0.7]
+        n_iter: 50
+      hyperopt:
+        space:
+          n_estimators: "hp.quniform('n_estimators', 200, 1000, 50)"
+          max_depth: "hp.choice('max_depth', [None, 6, 8, 10, 12, 20])"
+          min_samples_split: "hp.quniform('min_samples_split', 2, 10, 1)"
+          min_samples_leaf: "hp.quniform('min_samples_leaf', 1, 5, 1)"
+          max_features: "hp.choice('max_features', ['sqrt', 'log2', 0.5, 0.7])"
+        max_evals: 50
+
+  xgboost:
+    baseline:
+      type: "XGBRegressor"
+      params:
+        n_estimators: 500
+        learning_rate: 0.05
+        max_depth: 8
+        subsample: 0.8
+        colsample_bytree: 0.8
+        reg_lambda: 1.0
+        reg_alpha: 0.0
+        tree_method: "hist"
+        random_state: 42
+    tuning:
+      gridsearch:
+        param_grid:
+          n_estimators: [300, 600]
+          learning_rate: [0.03, 0.05, 0.1]
+          max_depth: [6, 8, 10]
+          subsample: [0.7, 0.8, 1.0]
+          colsample_bytree: [0.7, 0.8, 1.0]
+          reg_lambda: [0, 1, 5]
+          reg_alpha: [0, 0.5, 1]
+      randomsearch:
+        param_dist:
+          n_estimators: "randint(300, 1000)"
+          learning_rate: "loguniform(0.0001, 0.5)"
+          max_depth: "randint(4, 12)"
+          subsample: [0.6, 0.7, 0.8, 1.0]
+          colsample_bytree: [0.6, 0.7, 0.8, 1.0]
+          reg_lambda: "loguniform(0.0001, 10)"
+          reg_alpha: "loguniform(0.0001, 1)"
+        n_iter: 60
+      hyperopt:
+        space:
+          n_estimators: "hp.quniform('n_estimators', 300, 1200, 50)"
+          learning_rate: "hp.loguniform('learning_rate', -9.2, -0.69)"
+          max_depth: "hp.quniform('max_depth', 4, 12, 1)"
+          subsample: "hp.uniform('subsample', 0.6, 1.0)"
+          colsample_bytree: "hp.uniform('colsample_bytree', 0.6, 1.0)"
+          reg_lambda: "hp.loguniform('reg_lambda', -9.2, 2.3)"
+          reg_alpha: "hp.loguniform('reg_alpha', -9.2, 0)"
+        max_evals: 120

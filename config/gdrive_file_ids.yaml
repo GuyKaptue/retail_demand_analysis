@@ -1,0 +1,10 @@
+# config/gdrive_file_ids.yaml
+# Google Drive file IDs for Favorita Grocery Sales Forecasting dataset
+
+file_ids:
+  holiday_events: "1RMjSuqHXHTwAw_PGD5XVjhA3agaAGHDH"
+  items: "1ogMRixVhNY6XOJtIRtkRllyOyzw1nqya"
+  oil: "1Q59vk2v4WQ-Rpc9t2nqHcsZM3QWGFje_"
+  stores: "1Ei0MUXmNhmOcmrlPad8oklnFEDM95cDi"
+  train: "1oEX8NEJPY7wPmSJ0n7lO1JUFYyZjFBRv"
+  transactions: "1PW5LnAEAiL43fI5CRDn_h6pgDG5rtBW_"

@@ -1,0 +1,88 @@
+# ============================================================
+# ARIMA CONFIGURATION
+# Retail Demand Forecasting – Daily Frequency
+# ============================================================
+
+# ------------------------------------------------------------
+# Base (default) ARIMA model
+# Used when grid search is disabled or as initial benchmark
+# ------------------------------------------------------------
+arima:
+  p: 6        # AR order (captures short-term momentum)
+  d: 1        # Differencing order (removes trend)
+  q: 1        # MA order (captures short-term shocks)
+
+  seasonal: false   # ARIMA is non-seasonal (SARIMA handles seasonality)
+
+# ------------------------------------------------------------
+# Grid Search Configuration
+# Explores alternative ARIMA structures automatically
+# ------------------------------------------------------------
+grid_search:
+  enabled: true   # Enable/disable ARIMA grid search
+
+  # ----------------------------------------------------------
+  # Parameter grid: (p, d, q)
+  # Focus: short-term dynamics & stationarity
+  # ----------------------------------------------------------
+  p_range: [1, 2, 3, 4, 5, 6]     # AR orders to test
+  d_values: [0, 1]                # Differencing orders to test
+  q_values: [0, 1, 2, 3, 4, 5]    # MA orders to test
+
+  # ----------------------------------------------------------
+  # Primary selection metric for grid search
+  # Lower is better
+  # ----------------------------------------------------------
+  metric: "AIC"   # Akaike Information Criterion
+
+# ------------------------------------------------------------
+# Model Evaluation Configuration
+# ------------------------------------------------------------
+evaluation:
+
+  # Chronological train/test split
+  split_ratio: 0.8   # 80% train, 20% test
+
+  # Forecast horizon for evaluation
+  forecast_horizon: 30
+
+  # ----------------------------------------------------------
+  # Evaluation Metrics
+  # Computed AFTER model fitting
+  # ----------------------------------------------------------
+  metrics:
+
+    # ---------- Information Criteria ----------
+    - "AIC"
+    - "AICc"
+    - "BIC"
+    - "HQIC"
+
+    # ---------- Absolute Error Metrics ----------
+    - "MAE"
+    - "MSE"
+    - "RMSE"
+    - "RMSLE"
+
+    # ---------- Percentage-Based Errors ----------
+    - "MAPE"
+    - "SMAPE"
+    - "MdAPE"
+
+    # ---------- Scaled / Relative Errors ----------
+    - "MASE"
+    - "RMSSE"
+
+    # ---------- Accuracy & Bias ----------
+    - "R2"
+    - "RAE"
+    - "RSE"
+    - "MFE"
+
+    # ---------- Probabilistic / Likelihood ----------
+    - "LogLikelihood"
+    - "Deviance"
+
+    # ---------- Residual Diagnostics ----------
+    - "ACF1"
+    - "LjungBox"

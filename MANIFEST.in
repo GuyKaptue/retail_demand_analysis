@@ -1,0 +1,15 @@
+# Include essential files
+include README.md
+include requirements.txt
+include pyproject.toml
+include setup.cfg
+
+# Include source code
+recursive-include src *
+
+# Include notebooks and reports
+recursive-include notebooks *
+recursive-include reports *
+
+# Exclude data files (large raw datasets should not be packaged)
+exclude data/*
