@@ -366,7 +366,7 @@ $RECYCLE.BIN/
 
 # Project specific ignores
 # Keep template notebooks but ignore executed ones
-notebooks/**/*.ipynb
+!notebooks/**/*.ipynb
 !notebooks/**/template.ipynb
 !notebooks/**/README.ipynb
 
