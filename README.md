@@ -158,7 +158,7 @@ retail_demand_analysis/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/retail-demand-analysis.git
+   git clone https://github.com/GuyKaptue/retail_demand_analysis.git
    cd retail-demand-analysis
    ```
 
