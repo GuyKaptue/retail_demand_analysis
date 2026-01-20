@@ -214,7 +214,7 @@ outputs/
 predictions/
 forecasts/
 reports/results/
-reports/visualizations/
+!reports/visualizations/
 data/batch_forecasts/
 data/model_performance/
 
