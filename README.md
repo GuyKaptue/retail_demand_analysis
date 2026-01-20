@@ -472,8 +472,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Guy Kaptue**
 - Email: guykaptue24@gmail.com
-- LinkedIn: [LinkedIn Profile](www.linkedin.com/in/guy-michel-kaptue-tabeu)
-- GitHub: [Your GitHub Profile](https://github.com/GuyKaptue)
+- LinkedIn: [LinkedIn Profile](https://www.linkedin.com/in/guy-michel-kaptue-tabeu/)
+- GitHub: [GitHub Profile](https://github.com/GuyKaptue)
 
 ---
 
