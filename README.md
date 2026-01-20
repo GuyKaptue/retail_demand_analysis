@@ -282,17 +282,21 @@ Based on comprehensive evaluation across 4,100+ products:
 
 ### Model Comparison Dashboard
 
-![Model Comparison](reports/visualizations/week_2/comparison/01_metrics_comparison.png)
+![Model Comparison](/reports/visualizations/week_2/comparison/01_metrics_comparison.png)
+
 *Comprehensive model performance comparison across all metrics*
 
 ### Performance Rankings
 
-![Model Rankings](reports/visualizations/week_2/comparison/04_rankings.png)
+![Model Rankings](/reports/visualizations/week_2/comparison/04_rankings.png)
+
 *Statistical ranking of models based on multiple criteria*
 
 ### Error Distribution Analysis
 
-![Error Analysis](reports/visualizations/week_2/comparison/07_error_analysis.png)
+![Error Analysis](/reports/visualizations/week_2/comparison/07_error_analysis.png)
+
+
 *Distribution of forecasting errors across different models*
 
 ### Forecast Accuracy by Product Category
